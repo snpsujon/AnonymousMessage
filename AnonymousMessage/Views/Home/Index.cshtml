@@ -1,0 +1,66 @@
+﻿@{
+    ViewData["Title"] = "Anon Messege";
+
+
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+
+}
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="http://fonts.googleapis.com/css?family=Jolly+Lodger" rel="stylesheet" type="text/css">
+    <link rel="stylesheet" href="http://fonts.googleapis.com/css?family=Iceland" type="text/css" />
+    
+
+    <style>
+        body {
+            background-color: black;
+            background-image: linear-gradient(rgba(0,0,0,0.4),rgba(0,0,0,0.4)),url(https://i.ibb.co/cwqDbb2/896821.jpg);
+            color: rgb(35,182,39);
+            font-family: Tahoma,Verdana,Arial;
+            font-size: small;
+            font-family: iceland;
+            align-content: center;
+        }
+
+        .a {
+            margin: 0;
+            position: absolute;
+            top: 50%;
+            -ms-transform: translateY(-50%);
+            transform: translateY(-50%);
+            left: 50%;
+            -ms-transform: translateX(-50%);
+            transform: translateX(-50%);
+        }
+
+        .b {
+            border: 5px outset #1C6EA4;
+            border-radius: 20px 0px 20px 0px;
+            text-align: center;
+            color: #FFFFFF;
+            background: #333333;
+            text-shadow: 0 -1px 4px #FFF, 0 -2px 10px #ff0, 0 -10px 20px #ff8000, 0 -18px 40px #F00;
+            margin: 10px;
+            padding: 10px;
+            font-size: large;
+        }
+
+        a {
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+    <div class="a">
+        <label class="b"><a asp-action="Signup"> Get You Customaize Anon Link </a></label>
+    </div>
+
+
+
+
+</body>
+</html>

